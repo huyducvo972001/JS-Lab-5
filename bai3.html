@@ -1,0 +1,65 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 3 - Lab 5</title>
+    <style>
+        body{
+            background-image: url('images/hinh-nen-powerpoint-cong-nghe-1.jpg');
+            background-size: cover;
+        }
+        button{
+            width: 200px;
+            height: 200px;
+            font-size: 3.5em;
+        }
+        .container{
+            width: 600px;
+            margin: auto;
+        }
+        h1{
+            text-align: center;
+            margin-top: 60px;
+            color: yellow;
+        }
+    </style>
+    <script>
+        var flag = true;
+
+        function mark(index){
+            var button = document.getElementsByTagName("button")[index];
+            button.innerText = flag? "X":"O";
+            button.style.background = flag? "aqua":"yellow";
+            button.setAttribute("disabled","true");
+            flag = !flag;
+
+            count++;
+            if(count==8){
+                alert("Game over!");
+                location.reload();
+            }
+        }
+        var count = 0;
+        
+    </script>
+</head>
+<body>
+    <h1>TICTACTOE GAME</h1>
+    <table class="container">
+        <tr>
+            <td><button onclick="mark(0)"></button></td>
+            <td><button onclick="mark(1)"></button></td>
+            <td><button onclick="mark(2)"></button></td>
+        </tr>
+        <tr>
+            <td><button onclick="mark(3)"></button></td>
+            <td><button onclick="mark(4)"></button></td>
+            <td><button onclick="mark(5)"></button></td>
+        </tr>
+        <tr>
+            <td><button onclick="mark(6)"></button></td>
+            <td><button onclick="mark(7)"></button></td>
+            <td><button onclick="mark(8)"></button></td>
+        </tr>
+    </table>    
+</body>
+</html>

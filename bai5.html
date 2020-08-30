@@ -1,0 +1,172 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 5 - Lab 5</title>
+    <style>
+        body{
+            background-image: url('images/a1.jpg');
+        }
+        .container { 
+            width:700px; 
+            margin:auto; 
+            border:0.5px solid rgb(180, 180, 180); 
+            background:rgb(192, 169, 223);
+            margin-top: 70px;
+            box-shadow: 5px 5px 30px rgb(169, 167, 170);
+        }
+        .row { 
+            display:flex; 
+            line-height: 36px; 
+            text-align: center;
+            color: rgb(20, 20, 151);
+        }
+        .row > div { 
+            background:rgb(220, 219, 221); 
+            width: 25%; 
+            border:0.5px solid rgb(224, 8, 8); 
+        }
+        header, footer {
+            font-weight: bold; 
+            color:rgb(156, 19, 19);
+        }
+        button { 
+            width: 100px; 
+            height: 35px; 
+            color: blue;
+            font-size: 16px;
+        }
+        .head { 
+            padding:10px; 
+            text-align: center;
+            font-weight: bold;
+            color: blue;
+        }
+        .head span { 
+            float:right; 
+            font-style:italic;
+        }
+
+    </style>
+    <script>
+        function tinhtien(){
+            var nguoilon_arr = document.getElementsByClassName("nl");
+            var treem_arr = document.getElementsByClassName("te");
+            var sotien_arr = document.getElementsByClassName("tien");
+            var tongnguoilon = 0, tongtreem = 0, tongtien = 0;
+            
+            var nf = new Intl.NumberFormat('en-US');
+
+            for (var i=0; i<nguoilon_arr.length; i++){
+                var songuoilon = nguoilon_arr[i].innerText;
+                var sotreem = treem_arr[i].innerText;
+                songuoilon = parseInt(songuoilon);
+                sotreem = parseInt(sotreem);
+
+                tongnguoilon += songuoilon;
+                tongtreem += sotreem;
+
+                t = songuoilon*1000000 + sotreem*600000;
+                
+                tongtien+=t;
+                sotien_arr[i].innerText = nf.format(t);
+
+            }
+            
+            document.getElementById("tongnl").innerText = tongnguoilon;
+            document.getElementById("tongte").innerText = tongtreem;
+            document.getElementById("tongtien").innerText = nf.format(tongtien);
+            
+            setInterval(() => {
+                 tinhtien()
+            }, 100);
+            
+        }
+
+        function tien(obj){
+            var row = obj.parentNode;
+            sonl = row.children[1].innerText;
+            sote = row.children[2].innerText;
+            t = sonl*1000000 + sote*600000;
+            row.children[3].innerText = t;
+        }
+
+        function anhien(){
+            var row_arr = document.getElementsByClassName("row");
+            for(var i=1; i<row_arr.length-1; i++){
+                if (row_arr[i].style.display=="none") row_arr[i].style.display="";
+                else row_arr[i].style.display="none";
+            }
+        }
+        
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="head">TIỀN VÉ DU LỊCH HẠ LONG <span style="color: white;" id="ngay">Hiện ngày</span></div>
+            <header class="row">        
+                <div>Gia đình</div>
+                <div>Số người lớn</div>
+                <div>Số trẻ em</div>
+                <div>Tiền</div>
+            </header>
+            <div class="row">
+                <div>Đào kho Báu</div>
+                <div class="nl" contenteditable="true" onkeyup="tien(this)">11</div>
+                <div class="te" contenteditable="true" onkeyup="tien(this)">3</div>
+                <div class="tien">Số tiền</div>
+            </div>
+            <div class="row">
+                <div>Đỗ đạt Cao</div>
+                <div class="nl" contenteditable="true" onkeyup="tien(this)">22</div>
+                <div class="te" contenteditable="true" onkeyup="tien(this)">2</div>
+                <div class="tien">Số tiền</div>
+            </div>
+            <div class="row">
+                <div>Mai anh Tới</div>
+                <div class="nl" contenteditable="true" onkeyup="tien(this)">33</div>
+                <div class="te" contenteditable="true" onkeyup="tien(this)">4</div>
+                <div class="tien">Số tiền</div>
+            </div>
+            <div class="row">
+                <div>Phạm kỷ Luật</div>
+                <div class="nl" contenteditable="true" onkeyup="tien(this)">44</div>
+                <div class="te" contenteditable="true" onkeyup="tien(this)">6</div>
+                <div class="tien">Số tiền</div>
+            </div>
+            <div class="row">
+                <div>Mai anh Bảo</div>
+                <div class="nl" contenteditable="true" onkeyup="tien(this)">55</div>
+                <div class="te" contenteditable="true" onkeyup="tien(this)">7</div>
+                <div class="tien">Số tiền</div>
+            </div>
+            <footer class="row">
+                <div>Tổng</div>
+                <div id="tongnl"></div>
+                <div id="tongte"></div>
+                <div id="tongtien"></div>    
+            </footer>
+            <div class="row"> <button style="margin: 10px; margin-left: 120px;" onclick="tinhtien()">Tính</button> <button style="margin: 10px; margin-left: 245px;" onclick="anhien()">Ẩn Hiện</button> </div>
+        </div>
+        <script type="text/javascript">
+            function refrClock() {
+                var d = new Date();
+                var s = d.getSeconds();
+                var m = d.getMinutes();
+                var h = d.getHours();
+                var months = new Array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
+                if (s < 10) {
+                    s = "0" + s
+                }
+                if (m < 10) {
+                    m = "0" + m
+                }
+                if (h < 10) {
+                    h = "0" + h
+                }
+                document.getElementById("ngay").innerHTML = h + ":" + m + ":" + s + " ";
+                setTimeout("refrClock()", 1000);
+            }
+            refrClock();
+        </script>
+</body>
+</html>

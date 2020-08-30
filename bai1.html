@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 1 - Lab 5</title>
+    <script>
+        function hienthi(){
+            var tensp = document.getElementById("ten").innerText;
+            var soluongsp = document.getElementById("sluong").value;
+            var giasp = document.getElementById("dongia").getAttribute("data-gia");
+            var tinhtien = giasp*soluongsp;
+            
+            document.getElementById("tensp").innerText = tensp;
+            document.getElementById("tong").innerText = "$" +tinhtien;
+        }
+    </script>
+    <style>
+        body{
+            background-color: azure;
+        }
+        .container{
+            width: 500px;
+            margin: auto;
+            margin-top: 70px;
+            border: 1.5px solid white;
+            background-color: white;
+            box-shadow: 5px 5px 5px gray;
+        }
+        h2{
+            text-align: center;
+            color: rgb(184, 7, 7);
+        }
+        img{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #dongia{
+            padding-left: 100px;
+            color: red;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        button{
+            background-color: rgb(246, 109, 109);
+            border: none;
+            height: 25px;
+            margin-left: 10px;
+            width: 50px;
+            font-weight: bold;
+            color: white;
+        }
+        h3{
+            text-align: center;
+            color: rgb(71, 71, 133);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 id="ten">IPHONE XS MAX 2019</h2>
+        <img src="images/iphone-xs-max-gold.jpg" width="350" height="300" alt="">
+        <label id="dongia" data-gia="1950">Số lượng:</label>
+        <input type="number" id="sluong" value="1" />
+        <button onclick="hienthi()">Tính</button>
+        <hr>
+        <h3>Tên sản phẩm: <span id="tensp">?</span></h3>
+        <h3>Tổng cộng: <span id="tong">?</span></h3>
+    </div>
+</body>
+</html>
